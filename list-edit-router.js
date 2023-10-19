@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const indexToUpdate = tasks_list.findIndex((task) => task.id == id);
-  if (indexToUpdate) res.status(404); 
+  if (indexToUpdate == -1) res.status(404).json({error: 'No se encontró la tarea'}); 
   tasks_list[indexToUpdate] = {...tasks_list[indexToUpdate], ...req.body}
   res.json({tasks: tasks_list})
 });
